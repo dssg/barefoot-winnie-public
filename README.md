@@ -161,7 +161,7 @@ The code is organized into 8 submodules.
 
 ## Contributors
 
-Research Fellows:
+Data Science for Social Good 2019 Fellows:
 Kasun Amarasinghe, 
 Carlos Caro, 
 Nupoor Gandhi, 
