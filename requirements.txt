@@ -1,0 +1,18 @@
+ipython>=7.0.0, <8.0
+jupyter>=1.0.0, <2.0
+nbstripout==0.3.3
+nltk>=3.4.3, <4.0
+contractions==0.0.18
+bs4==0.0.1
+scikit-learn==0.21.2
+num2words==0.5.10
+pyyaml
+pymysql
+sqlalchemy
+gensim
+kedro==0.14.3
+textdistance
+matplotlib
+joblib==0.13.2
+python-crontab
+pathlib

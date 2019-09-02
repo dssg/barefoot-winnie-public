@@ -1,0 +1,32 @@
+DATABASE_PARAMS:
+  db_host: 10.0.1.4
+  db_name: bios
+
+# Google pretrained word2vec
+w2v_experiment_settings:
+    pretrained_vector_file: '/datadrive/models/GoogleNews-vectors-negative300.bin'
+    num_neighbors: 5
+    train_ratio: 0.8
+    dist_metric: 'cosine'
+    eval_metric: 'edit'
+    preprocessing_steps: ['denoise_text', 'filter_pos_tags', 'replace_contractions', 'remove_stop_words', 'remove_custom_stop_words']
+    save_results: False
+    restrict_inquiries: True
+
+tfidf_experiment_settings:
+    num_neighbors: 5
+    train_ratio: 0.8
+    dist_metric: 'cosine'
+    eval_metric: 'edit'
+    preprocessing_steps: ['denoise_text', 'filter_pos_tags', 'replace_contractions', 'remove_stop_words', 'remove_custom_stop_words', 'stem_words', 'lemmatize_words']
+    save_results: False
+    restrict_inquiries: True
+
+# The paramters for training the model
+# Note that train_params only applies if using TFIDF and w2v_pretrained_file only applies to W2v
+train_winnie_settings:
+    feature_type: 'tfidf'
+    preprocessing_steps: ['denoise_text', 'filter_pos_tags', 'replace_contractions',
+                          'remove_stop_words', 'remove_custom_stop_words', 'stem_words', 'lemmatize_words']
+    train_params: {max_df: 0.9, min_df: 0.01}
+    w2v_pretrained_file: '/datadrive/models/GoogleNews-vectors-negative300.bin'

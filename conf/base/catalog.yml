@@ -1,0 +1,127 @@
+_sql: &sql
+  type: SQLTableDataSet
+  table_name:
+  credentials: dssg
+  save_args:
+    if_exists: 'fail'
+
+_pq: &pq
+  type: ParquetLocalDataSet
+  filepath:
+
+_pickle: &pickle
+  type: PickleLocalDataSet
+  filepath:
+
+_fig: &fig
+  type: barefoot_winnie.d00_utils.figure_writer.MatplotlibWriter
+  filepath:
+
+_csv: &csv
+  type: CSVLocalDataSet
+  filepath:
+
+##############
+#### RAW #####
+##############
+
+raw_fb_messages:
+  table_name: messages
+  <<: *sql
+
+raw_received_sms:
+  table_name: received_sms
+  <<: *sql
+
+raw_sent_sms:
+  table_name: sent_sms
+  <<: *sql
+
+
+##############
+#### INT #####
+##############
+
+intermediate_fb_messages:
+  filepath: /datadrive/int/fb_messages
+  <<: *pq
+
+intermediate_received_sms:
+  filepath: /datadrive/int/received_sms
+  <<: *pq
+
+intermediate_sent_sms:
+  filepath: /datadrive/int/sent_sms
+  <<: *pq
+
+##############
+#### PRM #####
+##############
+
+primary_fb_conversations:
+  filepath: /datadrive/prm/fb_conversations
+  <<: *pq
+
+primary_sms:
+  filepath: /datadrive/prm/sms
+  <<: *pq
+
+primary_messages:
+  filepath: /datadrive/prm/messages
+  <<: *pq
+
+
+##############
+# MODEL RES ##
+##############
+
+w2v_model_results:
+  filepath: /datadrive/results/w2v_pretrained/recommendations
+  <<: *pq
+
+w2v_recommendation_performance:
+  filepath: /datadrive/results/w2v/recommendation_performance
+  <<: *pq
+
+tfidf_model_results:
+  filepath: /datadrive/results/tfidf/recommendations
+  <<: *pq
+
+tfidf_recommendation_performance:
+  filepath: /datadrive/results/tfidf/recommendation_performance
+  <<: *pq
+
+##############
+# ANALYSIS ###
+##############
+
+w2v_performance_summary:
+  filepath: /datadrive/report/w2v/w2v_performance_summary.csv
+  <<: *csv
+w2v_performance_plots:
+  filepath: /datadrive/report/w2v/w2v_performance_plots
+  <<: *fig
+
+tfidf_performance_summary:
+  filepath: /datadrive/report/tfidf/tfidf_performance_summary.csv
+  <<: *csv
+
+tfidf_performance_plots:
+  filepath: /datadrive/report/tfidf/tfidf_performance_plots
+  <<: *fig
+
+####################
+## Trained Models ##
+####################
+
+trained_model:
+  filepath: /datadrive/models/trained_model
+  <<: *pickle
+
+model_numeric_vectors:
+  filepath: /datadrive/models/numeric_vectors
+  <<: *pq
+
+model_raw_text:
+  filepath: /datadrive/models/raw_text
+  <<: *pq
