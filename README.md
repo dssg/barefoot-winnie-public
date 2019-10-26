@@ -18,7 +18,7 @@ The aim of this project is to improve the first-line legal aid processes of Bare
 
 ### Data Science for Social Good (DSSG) at Imperial College London
 
-The Data Science for Social Good Fellowship is a summer program to train aspiring data scientists to work on data mining, machine learning, big data, and data science projects with social impact. Working closely with governments and nonprofits, fellows take on real-world problems in education, health, energy, public safety, transportation, economic development, international development, and more.
+The Data Science for Social Good Summer Fellowship is a summer program organized by the Data Science for Social Good Foundation and partnering organizations to train aspiring data scientists to work on data mining, machine learning, big data, and data science projects with social impact. Working closely with governments and nonprofits, fellows take on real-world problems in education, health, energy, public safety, transportation, economic development, international development, and more.
 
 ## System Overview
 
