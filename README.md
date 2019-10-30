@@ -141,7 +141,7 @@ This codebase is tested on Linux Ubuntu 18.04.2 LTS environment. If the codebase
 
 Perfomance metrics were estimated for different settings on the input data. The results can be seen below:
 
-![evaluation score](https://raw.githubusercontent.com/mzjp2/barefoot-winnie-public/master/images/Evaluation_score.png)
+![evaluation score](https://raw.githubusercontent.com/dssg/barefoot-winnie-public/master/images/Evaluation_score.png)
 
 ## Code Organization
 
