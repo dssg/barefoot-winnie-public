@@ -162,8 +162,6 @@ The code is organized into 8 submodules.
 7. d06_visualisation: Generating plots for result reporting 
 8. d07_pipelines: defining the pipeline nodes
 
-
-
 <a name="contributors"></a>
 ## Contributors
 
