@@ -4,30 +4,32 @@ The aim of this project is to improve the first-line legal aid processes of Bare
 
 ## Table of Contents
 
-1. [Introduction](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#introduction)
-2. [System overview](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#system_overview)
-2. [Installation and setup](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#installation)
-3. [Code organization](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#code_organization)
-4. [Training pipeline](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#training_pipeline)
-5. [Inference pipeline](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#inference_pipeline)
-6. [Testing](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#testing)
-7. [Contributors](https://github.com/dssg/barefoot_winnie/blob/dev/README.md#contributors)
+1. [Introduction](#introduction)
+2. [System overview](#system_overview)
+2. [Installation and setup](#installation)
+3. [Code organization](#code_organization)
+4. [Training pipeline](#training_pipeline)
+5. [Inference pipeline](#inference_pipeline)
+6. [Testing](#testing)
+7. [Contributors](#contributors)
 
-
+<a name="introduction"></a>
 ## Introduction
 
 ### Data Science for Social Good (DSSG) at Imperial College London
 
 The Data Science for Social Good Summer Fellowship is a summer program organized by the Data Science for Social Good Foundation and partnering organizations to train aspiring data scientists to work on data mining, machine learning, big data, and data science projects with social impact. Working closely with governments and nonprofits, fellows take on real-world problems in education, health, energy, public safety, transportation, economic development, international development, and more.
 
+<a name="system_overview"></a>
 ## System Overview
 
 In Uganda, geographical and financial barriers limit people’s access to legal advice and guidance. However, mobile phone technology is widespread in the country. BarefootLaw (BFL) is a not for profit organization that leverages the abundance of mobile phones to provide free legal guidance to Ugandans via social media and SMS. People have been quick to make use of BFL’s services and as a result, the number of requests has been growing every year. Furthermore, BFL has an ambition of expanding and reaching 50 million people by 2030. BFL is a relatively small team and the increasing workload has led to an average response time of 72 hours per question. In this project, we propose an Artificial Intelligence (AI) system that can help make the response drafting process more efficient and potentially help BFL cut down their response time to 24 hours. More specifically, we developed a system that takes an incoming question, and provides a set of candidate responses that the lawyer could use/edit to draft the response to a beneficiary. The system is called Winnie, and it was approached as an information retrieval system where the question is the query and the historical question-answer pairs are the documents to be retrieved. The system was based on the text data of historical question-answer pairs provided by BFL.
 
 BarefootLaw receives legal questions from people through three different written channels: 1) Facebook, 2) SMS, and 3) email. The developed system is intended to speed up the process of processing a question and generating a answer to be sent back to the beneficiary. The system will estimate a set of candidate answers to a question that a lawyer can edit and send back to the beneficiary.
 
-The incoming requests are stored in a MySQL database. The developed system---Winnie---takes the incoming question, preprocesses the text, and converts the natural language text to a structured representation. Then, structured representations of questions are fed into a machine learning model to estimate the answer to a given question. These estimated answers are written back to the MySQL database and displayed to the lawyer through a webpage. 
+The incoming requests are stored in a MySQL database. The developed system---Winnie---takes the incoming question, preprocesses the text, and converts the natural language text to a structured representation. Then, structured representations of questions are fed into a machine learning model to estimate the answer to a given question. These estimated answers are written back to the MySQL database and displayed to the lawyer through a webpage.
 
+<a name="installation"></a>
 ## Installation and setup
 
 1. Install Anaconda:
@@ -80,6 +82,7 @@ dssg:
 
 Note that there is single space identation in some of the fields. A _.yml_ file can be created from the notepad by changing the ending format. The credentials file should be set up before the following pipelines are run.
 
+<a name="training_pipeline"></a>
 ## Training pipeline
 
 Training pipeline trains the natural language models and machine learning models and saves them to the disk. The methods in this pipeline pull all the existing messages in MySQL database and create a model for Winnie to look into when a new inquiry comes in.
@@ -113,6 +116,7 @@ The storage path of the trained models can be modified by editing the `conf/base
   - model_numeric_vectors: parquet file. Numerical representation of the training questions.
   - model_raw_text: parquet file. Text representation of training questions and answers.
 
+<a name="inference_pipeline"></a>
 ## Inference pipeline
 
 The inference pipeline executes when the Lawyers need the estimations from Winnie to a new question. The inference pipeline brings the case id -integer key to identify case- of a specific question directly from MySQL database and outputs the recommended responses. In specific, the column *id* from the **cases** table from MySQL.
@@ -136,13 +140,15 @@ The 5 candidate responses to be displayed will be written in the table named `re
 
 Each case_id will have five recommended responses. Therefore, each case_id will be repeated five times in that table.
 
+<a name="testing"></a>
 ## Testing
 This codebase is tested on Linux Ubuntu 18.04.2 LTS environment. If the codebase is to be run on new data with the same structure as the BIOS database, the user should only change the credentials file to have access to the new mysql database. If the tables have different format and names, the _barefoot_winnie/conf/base/catalog.yml_ should be changed in the _RAW_ section to receive the names of new tables in the 'table_name' field.
 
 Perfomance metrics were estimated for different settings on the input data. The results can be seen below:
 
-![score](https://github.com/dssg/barefoot_winnie/blob/dev/images/Evaluation_score.png)
+![evaluation score](https://raw.githubusercontent.com/dssg/barefoot-winnie-public/master/images/Evaluation_score.png)
 
+<a name="code_organization"></a>
 ## Code Organization
 
 The code is organized into 8 submodules. 
@@ -156,9 +162,7 @@ The code is organized into 8 submodules.
 7. d06_visualisation: Generating plots for result reporting 
 8. d07_pipelines: defining the pipeline nodes
 
-
-
-
+<a name="contributors"></a>
 ## Contributors
 
 Data Science for Social Good 2019 Fellows:
