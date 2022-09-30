@@ -13,6 +13,6 @@ gensim
 kedro==0.14.3
 textdistance
 matplotlib
-joblib==0.13.2
+joblib==1.2.0
 python-crontab
 pathlib
